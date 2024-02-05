@@ -72,6 +72,7 @@ class Sample2Activity : AppCompatActivity() {
     }
 
     lateinit var stock_chart: StockChart
+    lateinit var custom:TextView
     lateinit var tv_highlight_info: TextView
     private var periodOptionButtons = mutableMapOf<View, Period>()
     private var kChartTypeOptionButtons = mutableMapOf<View, KChartConfig.KChartType>()
@@ -119,7 +120,7 @@ class Sample2Activity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_sample2)
         stock_chart = findViewById(R.id.stock_chart)
-
+        custom = findViewById(R.id.custom)
         // StockChart初始化
         initStockChart()
 
@@ -670,15 +671,15 @@ class Sample2Activity : AppCompatActivity() {
     }
 
     private fun initCustomChartButtons() {
-//        custom.setOnClickListener {
-//            if (stockChartConfig.childChartFactories.contains(customChartFactory!!)) {
-//                stockChartConfig.removeChildCharts(customChartFactory!!)
-//            } else {
-//                stockChartConfig.addChildCharts(customChartFactory!!)
-//            }
-//            stock_chart.notifyChanged()
-//            refreshOptionButtonsState()
-//        }
+        custom.setOnClickListener {
+            if (stockChartConfig.childChartFactories.contains(customChartFactory!!)) {
+                stockChartConfig.removeChildCharts(customChartFactory!!)
+            } else {
+                stockChartConfig.addChildCharts(customChartFactory!!)
+            }
+            stock_chart.notifyChanged()
+            refreshOptionButtonsState()
+        }
     }
 
     /**
@@ -712,6 +713,6 @@ class Sample2Activity : AppCompatActivity() {
             }
         }
 
-//        custom.isSelected = stockChartConfig.childChartFactories.contains(customChartFactory!!)
+        custom.isSelected = stockChartConfig.childChartFactories.contains(customChartFactory!!)
     }
 }
